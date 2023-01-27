@@ -3,6 +3,8 @@ import "./index.css";
 import App from "./App";
 
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const Global = createGlobalStyle`
 :root {
@@ -92,7 +94,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <ThemeProvider theme={theme}>
-    <Global />
-    <App />
+    <Provider store={store}>
+      <Global />
+      <App />
+    </Provider>
   </ThemeProvider>
 );

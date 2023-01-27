@@ -1,4 +1,7 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getLengthValueAction } from "../../store/reducers/CharacterLengthReducer";
 import Slider from "./Slider";
 import SliderContent from "./SliderContent";
 
@@ -9,10 +12,17 @@ const Form = styled.form`
 `;
 
 function SliderBlock() {
+  const dispatch = useDispatch();
+  const sliderValue = useTypedSelector((state) => state.CharacterLength.value);
+
+  const onChange = (value: number): void => {
+    dispatch(getLengthValueAction(value));
+  };
+
   return (
     <Form>
-      <SliderContent />
-      <Slider />
+      <SliderContent value={sliderValue} />
+      <Slider onChange={onChange} value={sliderValue} />
     </Form>
   );
 }

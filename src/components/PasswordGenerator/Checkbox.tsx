@@ -44,16 +44,27 @@ const Check = styled(CheckSVG)`
 
 const Text = styled.p``;
 
-function Checkbox() {
+interface CheckboxType {
+  onChange: (e: any, name: string) => void;
+  characterName: string;
+  keyName: string;
+  checked: boolean;
+}
+
+function Checkbox({ onChange, characterName, keyName, checked }: CheckboxType) {
   return (
     <Block>
       <CheckboxLabel>
-        <CheckboxStyle type="checkbox" />
+        <CheckboxStyle
+          type="checkbox"
+          onChange={(e) => onChange(e.target.checked, keyName)}
+          checked={checked}
+        />
         <CheckboxSpan>
           <Check />
         </CheckboxSpan>
       </CheckboxLabel>
-      <Text>Include Uppercase Letters</Text>
+      <Text>{characterName}</Text>
     </Block>
   );
 }

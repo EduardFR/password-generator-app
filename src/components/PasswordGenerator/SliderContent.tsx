@@ -11,11 +11,15 @@ const ValueLength = styled.h1`
   color: var(--color-NeonGreen);
 `;
 
-function SliderContent() {
+interface SliderContentType {
+  value: number;
+}
+
+function SliderContent({ value }: SliderContentType) {
   return (
     <Block>
       <Text>Character Length</Text>
-      <ValueLength>10</ValueLength>
+      <ValueLength>{value}</ValueLength>
     </Block>
   );
 }
