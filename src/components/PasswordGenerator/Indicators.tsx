@@ -6,13 +6,18 @@ const Block = styled.div`
   column-gap: 8px;
 `;
 
-function Indicators() {
+interface IndicatorsType {
+  color: string;
+  strength: number;
+}
+
+function Indicators({ color, strength }: IndicatorsType) {
   return (
     <Block>
-      <Indicator color="var(--color-Yellow)" />
-      <Indicator color="var(--color-Yellow)" />
-      <Indicator color="var(--color-Yellow)" />
-      <Indicator />
+      <Indicator color={strength >= 3 ? color : ""} />
+      <Indicator color={strength > 3 ? color : ""} />
+      <Indicator color={strength > 6 ? color : ""} />
+      <Indicator color={strength > 9 ? color : ""} />
     </Block>
   );
 }

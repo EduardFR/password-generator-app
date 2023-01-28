@@ -1,20 +1,22 @@
 import styled from "styled-components";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import Password from "./Password";
 import PasswordCopyButton from "./PasswordCopyButton";
 
 const Block = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 19px 32px;
   background-color: var(--color-DarkGray);
 `;
 
 function PasswordBlock() {
+  const password = useTypedSelector((state) => state.Password.value);
+
   return (
     <Block>
-      <Password />
-      <PasswordCopyButton />
+      <Password value={password} />
+      <PasswordCopyButton value={password} />
     </Block>
   );
 }

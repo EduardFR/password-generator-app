@@ -18,7 +18,7 @@ interface actionType {
 const defaultState: defaultStateType = {
   upper: {
     name: "Include Uppercase Letters",
-    value: false,
+    value: true,
   },
   lower: {
     name: "Include Lowercase Letters",

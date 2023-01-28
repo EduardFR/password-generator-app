@@ -8,11 +8,17 @@ const Block = styled.div`
 
 const Text = styled.h2``;
 
-function StrengthIndicator() {
+interface StrengthIndicatorType {
+  color: string;
+  value: string;
+  strength: number;
+}
+
+function StrengthIndicator({ color, value, strength }: StrengthIndicatorType) {
   return (
     <Block>
-      <Text>MEDIUM</Text>
-      <Indicators />
+      <Text>{value}</Text>
+      <Indicators strength={strength} color={color} />
     </Block>
   );
 }

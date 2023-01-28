@@ -49,9 +49,16 @@ interface CheckboxType {
   characterName: string;
   keyName: string;
   checked: boolean;
+  disabled: boolean;
 }
 
-function Checkbox({ onChange, characterName, keyName, checked }: CheckboxType) {
+function Checkbox({
+  onChange,
+  characterName,
+  keyName,
+  checked,
+  disabled,
+}: CheckboxType) {
   return (
     <Block>
       <CheckboxLabel>
@@ -59,6 +66,7 @@ function Checkbox({ onChange, characterName, keyName, checked }: CheckboxType) {
           type="checkbox"
           onChange={(e) => onChange(e.target.checked, keyName)}
           checked={checked}
+          disabled={disabled}
         />
         <CheckboxSpan>
           <Check />

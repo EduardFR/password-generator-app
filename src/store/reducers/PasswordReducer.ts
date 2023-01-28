@@ -1,5 +1,5 @@
 interface defaultStateType {
-  value: number;
+  value: string;
 }
 
 interface actionType {
@@ -8,17 +8,17 @@ interface actionType {
 }
 
 const defaultState: defaultStateType = {
-  value: 5,
+  value: "",
 };
 
-const GET_LENGTH_VALUE = "GET_LENGTH_VALUE";
+const GET_PASSWORD_VALUE = "GET_PASSWORD_VALUE";
 
-export const CharacterLengthReducer = (
+export const PasswordReducer = (
   state = defaultState,
   action: actionType
 ): defaultStateType => {
   switch (action.type) {
-    case GET_LENGTH_VALUE:
+    case GET_PASSWORD_VALUE:
       return { ...state, value: action.payload };
 
     default:
@@ -26,7 +26,7 @@ export const CharacterLengthReducer = (
   }
 };
 
-export const getLengthValueAction = (payload: number) => ({
-  type: GET_LENGTH_VALUE,
+export const getPasswordValueAction = (payload: string) => ({
+  type: GET_PASSWORD_VALUE,
   payload,
 });

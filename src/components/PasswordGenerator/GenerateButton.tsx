@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { generatePassword } from "../../helpers/generatePassword";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { getPasswordValueAction } from "../../store/reducers/PasswordReducer";
 
 const Button = styled.button`
   display: inline-block;
@@ -20,7 +24,25 @@ const Button = styled.button`
 `;
 
 function GenerateButton() {
-  return <Button>GENERATE</Button>;
+  const dispatch = useDispatch();
+  const sliderValue = useTypedSelector((state) => state.CharacterLength.value);
+  const chracterTypes = useTypedSelector((state) => state.CharacterType);
+
+  const onClick = () => {
+    dispatch(
+      getPasswordValueAction(
+        generatePassword(
+          sliderValue,
+          chracterTypes.upper.value,
+          chracterTypes.lower.value,
+          chracterTypes.numbers.value,
+          chracterTypes.symbols.value
+        )
+      )
+    );
+  };
+
+  return <Button onClick={() => onClick()}>GENERATE</Button>;
 }
 
 export default GenerateButton;

@@ -24,24 +24,44 @@ function CheckboxGroup() {
         onChange={onChange}
         characterName={Character.upper.name}
         checked={Character.upper.value}
+        disabled={
+          !Character.lower.value &&
+          !Character.numbers.value &&
+          !Character.symbols.value
+        }
         keyName="upper"
       />
       <Checkbox
         onChange={onChange}
         characterName={Character.lower.name}
         checked={Character.lower.value}
+        disabled={
+          !Character.upper.value &&
+          !Character.numbers.value &&
+          !Character.symbols.value
+        }
         keyName="lower"
       />
       <Checkbox
         onChange={onChange}
         characterName={Character.numbers.name}
         checked={Character.numbers.value}
+        disabled={
+          !Character.lower.value &&
+          !Character.upper.value &&
+          !Character.symbols.value
+        }
         keyName="numbers"
       />
       <Checkbox
         onChange={onChange}
         characterName={Character.symbols.name}
         checked={Character.symbols.value}
+        disabled={
+          !Character.lower.value &&
+          !Character.numbers.value &&
+          !Character.upper.value
+        }
         keyName="symbols"
       />
     </Block>
