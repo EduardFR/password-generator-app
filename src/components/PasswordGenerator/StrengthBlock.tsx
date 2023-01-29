@@ -8,6 +8,13 @@ const Block = styled.div`
   align-items: center;
   background-color: var(--color-VeryDarkGray);
   padding: 20px 32px;
+  @media ${(props) => props.theme.media.phone} {
+    justify-content: none;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    column-gap: 5px;
+  }
 `;
 
 const Text = styled.p`

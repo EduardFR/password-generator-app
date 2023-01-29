@@ -4,16 +4,22 @@ import { ReactComponent as CheckSVG } from "../../assets/Path 2.svg";
 const Block = styled.div`
   user-select: none;
   display: flex;
-  column-gap: 24px;
+  align-items: center;
 `;
 const CheckboxLabel = styled.label`
   position: relative;
   cursor: pointer;
   width: 20px;
   height: 20px;
+  margin-right: 20px;
   border: 2px solid var(--color-White);
   &:hover {
     border: 2px solid var(--color-NeonGreen);
+  }
+  @media ${(props) => props.theme.media.phone} {
+    width: 0;
+
+    padding: 0 10px;
   }
 `;
 
@@ -42,7 +48,9 @@ const Check = styled(CheckSVG)`
   visibility: inherit;
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  text-align: left;
+`;
 
 interface CheckboxType {
   onChange: (e: any, name: string) => void;

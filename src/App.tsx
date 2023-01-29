@@ -6,6 +6,10 @@ const AppWrapper = styled.div`
   width: 540px;
   margin: 100px auto;
   text-align: center;
+  @media ${(props) => props.theme.media.phone} {
+    width: 92%;
+    margin: 63px 16px;
+  }
 `;
 
 function App() {

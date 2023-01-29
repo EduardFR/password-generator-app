@@ -7,7 +7,7 @@ const GeneratePasswordInput = styled.input`
   font-size: 32px;
   font-weight: 700;
   line-height: 42px;
-  width: 384px;
+  width: 100%;
   color: var(--color-White);
   &::placeholder {
     color: var(--color-Gray);

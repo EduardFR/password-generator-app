@@ -6,7 +6,7 @@ import PasswordCopyButton from "./PasswordCopyButton";
 const Block = styled.div`
   display: flex;
   align-items: center;
-  padding: 19px 32px;
+  padding: 19px 30px;
   background-color: var(--color-DarkGray);
 `;
 
