@@ -1,9 +1,13 @@
 interface characterType {
-  name: string;
-  value: boolean;
+  active: boolean;
 }
 
-interface defaultStateType {
+interface payloadType {
+  name: string;
+  active: boolean;
+}
+
+interface CharacterStateType {
   upper: characterType;
   lower: characterType;
   numbers: characterType;
@@ -12,25 +16,21 @@ interface defaultStateType {
 
 interface actionType {
   type: string;
-  payload: characterType;
+  payload: payloadType;
 }
 
-const defaultState: defaultStateType = {
+const defaultState: CharacterStateType = {
   upper: {
-    name: "Include Uppercase Letters",
-    value: true,
+    active: true,
   },
   lower: {
-    name: "Include Lowercase Letters",
-    value: false,
+    active: false,
   },
   numbers: {
-    name: "Include Numbers",
-    value: false,
+    active: false,
   },
   symbols: {
-    name: "Include Symbols",
-    value: false,
+    active: false,
   },
 };
 
@@ -39,11 +39,11 @@ const GET_TYPE_VALUE = "GET_TYPE_VALUE";
 export const CharacterTypeReducer = (
   state = defaultState,
   action: actionType
-): defaultStateType => {
+): CharacterStateType => {
   switch (action.type) {
     case GET_TYPE_VALUE:
       let key = action.payload.name as keyof typeof state;
-      state[key] = { name: state[key].name, value: action.payload.value };
+      state[key] = { active: action.payload.active };
 
       return {
         ...state,
@@ -54,7 +54,7 @@ export const CharacterTypeReducer = (
   }
 };
 
-export const getTypeValueAction = (payload: characterType) => ({
+export const getTypeValueAction = (payload: payloadType) => ({
   type: GET_TYPE_VALUE,
   payload,
 });

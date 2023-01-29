@@ -14,53 +14,53 @@ function CheckboxGroup() {
   const dispatch = useDispatch();
   const Character = useTypedSelector((state) => state.CharacterType);
 
-  const onChange = (value: boolean, name: string): void => {
-    dispatch(getTypeValueAction({ value, name }));
+  const onChange = (active: boolean, name: string): void => {
+    dispatch(getTypeValueAction({ active, name }));
   };
 
   return (
     <Block>
       <Checkbox
         onChange={onChange}
-        characterName={Character.upper.name}
-        checked={Character.upper.value}
+        characterName="Include Uppercase Letters"
+        checked={Character.upper.active}
         disabled={
-          !Character.lower.value &&
-          !Character.numbers.value &&
-          !Character.symbols.value
+          !Character.lower.active &&
+          !Character.numbers.active &&
+          !Character.symbols.active
         }
         keyName="upper"
       />
       <Checkbox
         onChange={onChange}
-        characterName={Character.lower.name}
-        checked={Character.lower.value}
+        characterName="Include Lowercase Letters"
+        checked={Character.lower.active}
         disabled={
-          !Character.upper.value &&
-          !Character.numbers.value &&
-          !Character.symbols.value
+          !Character.upper.active &&
+          !Character.numbers.active &&
+          !Character.symbols.active
         }
         keyName="lower"
       />
       <Checkbox
         onChange={onChange}
-        characterName={Character.numbers.name}
-        checked={Character.numbers.value}
+        characterName="Include Numbers"
+        checked={Character.numbers.active}
         disabled={
-          !Character.lower.value &&
-          !Character.upper.value &&
-          !Character.symbols.value
+          !Character.lower.active &&
+          !Character.upper.active &&
+          !Character.symbols.active
         }
         keyName="numbers"
       />
       <Checkbox
         onChange={onChange}
-        characterName={Character.symbols.name}
-        checked={Character.symbols.value}
+        characterName="Include Symbols"
+        checked={Character.symbols.active}
         disabled={
-          !Character.lower.value &&
-          !Character.numbers.value &&
-          !Character.upper.value
+          !Character.lower.active &&
+          !Character.numbers.active &&
+          !Character.upper.active
         }
         keyName="symbols"
       />

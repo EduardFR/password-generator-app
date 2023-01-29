@@ -1,4 +1,4 @@
-interface defaultStateType {
+interface characterLengthStateType {
   value: number;
 }
 
@@ -7,7 +7,7 @@ interface actionType {
   payload: any;
 }
 
-const defaultState: defaultStateType = {
+const defaultState: characterLengthStateType = {
   value: 5,
 };
 
@@ -16,7 +16,7 @@ const GET_LENGTH_VALUE = "GET_LENGTH_VALUE";
 export const CharacterLengthReducer = (
   state = defaultState,
   action: actionType
-): defaultStateType => {
+): characterLengthStateType => {
   switch (action.type) {
     case GET_LENGTH_VALUE:
       return { ...state, value: action.payload };

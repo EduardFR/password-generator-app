@@ -33,10 +33,10 @@ function GenerateButton() {
       getPasswordValueAction(
         generatePassword(
           sliderValue,
-          chracterTypes.upper.value,
-          chracterTypes.lower.value,
-          chracterTypes.numbers.value,
-          chracterTypes.symbols.value
+          chracterTypes.upper.active,
+          chracterTypes.lower.active,
+          chracterTypes.numbers.active,
+          chracterTypes.symbols.active
         )
       )
     );

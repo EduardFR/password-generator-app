@@ -1,4 +1,4 @@
-interface defaultStateType {
+interface passwordStateType {
   value: string;
 }
 
@@ -7,7 +7,7 @@ interface actionType {
   payload: any;
 }
 
-const defaultState: defaultStateType = {
+const defaultState: passwordStateType = {
   value: "",
 };
 
@@ -16,7 +16,7 @@ const GET_PASSWORD_VALUE = "GET_PASSWORD_VALUE";
 export const PasswordReducer = (
   state = defaultState,
   action: actionType
-): defaultStateType => {
+): passwordStateType => {
   switch (action.type) {
     case GET_PASSWORD_VALUE:
       return { ...state, value: action.payload };

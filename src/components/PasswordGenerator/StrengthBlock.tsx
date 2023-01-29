@@ -25,37 +25,84 @@ function StrengthBlock() {
   const sliderValue = useTypedSelector((state) => state.CharacterLength.value);
   const chracterTypes = useTypedSelector((state) => state.CharacterType);
 
-  const passwordStrength =
-    (chracterTypes.upper.value ? 1 : 0) +
-    (chracterTypes.lower.value ? 1 : 0) +
-    (chracterTypes.numbers.value ? 1 : 0) +
-    (chracterTypes.symbols.value ? 2 : 0) +
-    (sliderValue < 10 ? 2 : 0) +
-    (sliderValue >= 10 && sliderValue < 15 ? 4 : 0) +
-    (sliderValue >= 15 && sliderValue <= 20 ? 6 : 0);
-  const strengthValue =
-    (passwordStrength === 3 ? "TOO WEAK!" : "") ||
-    (passwordStrength > 3 && passwordStrength <= 6 ? "WEAK" : "") ||
-    (passwordStrength > 6 && passwordStrength <= 9 ? "MEDIUM" : "") ||
-    (passwordStrength > 9 && passwordStrength <= 11 ? "STRONG" : "");
-  const Color =
-    (passwordStrength === 3 ? "var(--color-Red)" : "") ||
-    (passwordStrength > 3 && passwordStrength <= 6
-      ? "var(--color-Orange)"
-      : "") ||
-    (passwordStrength > 6 && passwordStrength <= 9
-      ? "var(--color-Yellow)"
-      : "") ||
-    (passwordStrength > 9 && passwordStrength <= 11
-      ? "var(--color-NeonGreen)"
-      : "");
+  const passwordStrength = (
+    upperActive: boolean,
+    lowerActive: boolean,
+    numbersActive: boolean,
+    symbolsActive: boolean,
+    sliderValue: number
+  ): number => {
+    let strength = 0;
+    if (upperActive) {
+      strength += 1;
+    }
+    if (lowerActive) {
+      strength += 1;
+    }
+    if (numbersActive) {
+      strength += 1;
+    }
+    if (symbolsActive) {
+      strength += 2;
+    }
+    if (sliderValue < 10) {
+      strength += 2;
+    }
+    if (sliderValue >= 10 && sliderValue < 15) {
+      strength += 4;
+    }
+    if (sliderValue >= 15 && sliderValue <= 20) {
+      strength += 6;
+    }
+    return strength;
+  };
+
+  const strengthValue = (passwordStrength: number): string => {
+    if (passwordStrength === 3) {
+      return "TOO WEAK!";
+    }
+
+    if (passwordStrength > 3 && passwordStrength <= 6) {
+      return "WEAK";
+    }
+
+    if (passwordStrength > 6 && passwordStrength <= 9) {
+      return "MEDIUM";
+    }
+
+    return "STRONG";
+  };
+
+  const Color = (passwordStrength: number): string => {
+    if (passwordStrength === 3) {
+      return "var(--color-Red)";
+    }
+
+    if (passwordStrength > 3 && passwordStrength <= 6) {
+      return "var(--color-Orange)";
+    }
+
+    if (passwordStrength > 6 && passwordStrength <= 9) {
+      return "var(--color-Yellow)";
+    }
+
+    return "var(--color-NeonGreen)";
+  };
+
+  let strength = passwordStrength(
+    chracterTypes.upper.active,
+    chracterTypes.lower.active,
+    chracterTypes.numbers.active,
+    chracterTypes.symbols.active,
+    sliderValue
+  );
   return (
     <Block>
       <Text>STRENGTH</Text>
       <StrengthIndicator
-        color={Color}
-        value={strengthValue}
-        strength={passwordStrength}
+        color={Color(strength)}
+        value={strengthValue(strength)}
+        strength={strength}
       />
     </Block>
   );
